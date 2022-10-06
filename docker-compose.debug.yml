@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  cardanoservice:
+    image: cardanoservice
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: development
+      BLOCKFROST_APIKEY: ${BLOCKFROST_APIKEY}
+      MNEMONIC: ${MNEMONIC}
+      AUTH_SERVER: ${AUTH_SERVER}
+      CARDANO_NETWORK: ${CARDANO_NETWORK}
+    ports:
+      - 10003:10003
+      - 9229:9229
+    command: ["node", "--inspect=0.0.0.0:9229", "index.js"]

@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  cardanoservice:
+    image: cardanoservice
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+      BLOCKFROST_APIKEY: ${BLOCKFROST_APIKEY}
+      MNEMONIC: ${MNEMONIC}
+      AUTH_SERVER: ${AUTH_SERVER}
+      CARDANO_NETWORK: ${CARDANO_NETWORK}
+    ports:
+      - 10003:10003
